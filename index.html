@@ -1,233 +1,695 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NeverMiss — Never Lose a Deal</title>
-  <meta name="description" content="Email open tracking, follow-up reminders, automated sequences, link click tracking, and deal insights — all inside Gmail. Stop losing deals you should've closed.">
-  <link rel="icon" type="image/png" sizes="48x48" href="/icons/icon48.png">
-  <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NeverMiss — A tiny command center that turns Gmail into a follow-up machine</title>
+  <meta name="description" content="NeverMiss turns Gmail into a follow-up machine. Stop deals from slipping with a Today queue, stale nudges, open signals, and deal context — all inside Gmail." />
+  <meta name="theme-color" content="#0B1220" />
+  <link rel="icon" href="/favicon.ico" />
 
-  <!-- Nav -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <div class="nav-brand">
-        <img src="/icons/icon48.png" alt="NeverMiss" width="32" height="32">
-        <span class="nav-name">NeverMiss</span>
+  <!-- Open Graph -->
+  <meta property="og:title" content="NeverMiss — Turn Gmail into a follow-up machine" />
+  <meta property="og:description" content="Stop deals from slipping. Today queue, stale nudges, open signals, deal context — inside Gmail." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nevermiss.team" />
+  <!-- Optional: add once you have one -->
+  <!-- <meta property="og:image" content="https://nevermiss.team/og.png" /> -->
+
+  <style>
+    :root{
+      /* Core tokens (nm-) */
+      --nm-bg: #070B12;
+      --nm-surface: #0B1220;
+      --nm-surface-2: #0E172A;
+      --nm-border: rgba(255,255,255,0.10);
+      --nm-text: rgba(255,255,255,0.92);
+      --nm-muted: rgba(255,255,255,0.70);
+      --nm-faint: rgba(255,255,255,0.52);
+      --nm-accent: #4F8CFF;
+      --nm-success: #26D07C;
+      --nm-danger: #FF4D4F;
+
+      --nm-radius-lg: 18px;
+      --nm-radius-md: 14px;
+      --nm-radius-sm: 10px;
+
+      --nm-shadow: 0 18px 60px rgba(0,0,0,0.55);
+      --nm-shadow-soft: 0 10px 30px rgba(0,0,0,0.35);
+
+      --nm-grid: 8px;
+      --nm-max: 1120px;
+
+      --nm-font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --nm-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: var(--nm-font);
+      color: var(--nm-text);
+      background:
+        radial-gradient(1200px 700px at 15% 8%, rgba(79,140,255,0.25), transparent 60%),
+        radial-gradient(900px 520px at 85% 18%, rgba(38,208,124,0.16), transparent 60%),
+        radial-gradient(800px 500px at 50% 100%, rgba(255,77,79,0.12), transparent 60%),
+        var(--nm-bg);
+      line-height: 1.45;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); }
+
+    .wrap{ max-width: var(--nm-max); margin: 0 auto; padding: calc(var(--nm-grid) * 4); }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: calc(var(--nm-grid) * 2) 0;
+    }
+    .brand{
+      display:flex; gap: 10px; align-items:center;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .logo{
+      width: 28px; height: 28px; border-radius: 9px;
+      background: linear-gradient(135deg, rgba(79,140,255,0.9), rgba(38,208,124,0.75));
+      box-shadow: 0 10px 30px rgba(79,140,255,0.18);
+    }
+    .navlinks{
+      display:flex; gap: calc(var(--nm-grid) * 2);
+      color: var(--nm-muted);
+      font-size: 14px;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--nm-border);
+      background: rgba(255,255,255,0.04);
+      color: var(--nm-text);
+      font-weight: 650;
+      font-size: 14px;
+      cursor:pointer;
+      user-select:none;
+      transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+      text-decoration: none !important;
+      gap: 10px;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.16); }
+    .btn:active{ transform: translateY(0px); }
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(79,140,255,0.98), rgba(79,140,255,0.78));
+      border-color: rgba(79,140,255,0.55);
+      box-shadow: 0 16px 45px rgba(79,140,255,0.22);
+      color: #081022;
+    }
+    .btn.primary:hover{ border-color: rgba(79,140,255,0.7); }
+
+    .pill{
+      display:inline-flex; align-items:center; gap: 8px;
+      padding: 8px 10px;
+      border: 1px solid var(--nm-border);
+      background: rgba(255,255,255,0.04);
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--nm-muted);
+    }
+    .dot{ width: 8px; height: 8px; border-radius: 999px; background: var(--nm-success); box-shadow: 0 0 0 6px rgba(38,208,124,0.12); }
+
+    .hero{
+      padding: calc(var(--nm-grid) * 7) 0 calc(var(--nm-grid) * 4);
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: calc(var(--nm-grid) * 4);
+      align-items:start;
+    }
+    @media (max-width: 920px){
+      .hero{ grid-template-columns: 1fr; }
+      .navlinks{ display:none; }
+    }
+
+    .h1{
+      font-size: clamp(34px, 4.2vw, 56px);
+      line-height: 1.04;
+      letter-spacing: -0.8px;
+      margin: 10px 0 14px;
+    }
+    .sub{
+      font-size: 18px;
+      color: var(--nm-muted);
+      max-width: 56ch;
+      margin: 0 0 18px;
+    }
+    .ctaRow{ display:flex; gap: 12px; flex-wrap:wrap; align-items:center; margin-top: 18px; }
+    .fineprint{ color: var(--nm-faint); font-size: 13px; margin-top: 10px; }
+
+    .card{
+      border-radius: var(--nm-radius-lg);
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--nm-border);
+      box-shadow: var(--nm-shadow-soft);
+      overflow:hidden;
+    }
+    .cardInner{ padding: calc(var(--nm-grid) * 3); }
+    .cardTitle{ font-weight: 750; margin: 0 0 6px; letter-spacing: -0.2px; }
+    .cardText{ color: var(--nm-muted); margin: 0; }
+
+    .demo{
+      display:flex; flex-direction:column; gap: 14px;
+    }
+    .mock{
+      height: 320px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      position: relative;
+      overflow: hidden;
+    }
+    .mockHeader{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.78);
+      font-size: 13px;
+    }
+    .mockBody{ padding: 14px; display:flex; flex-direction:column; gap: 10px; }
+    .row{
+      display:flex; justify-content:space-between; align-items:center; gap: 10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.14);
+    }
+    .rowLeft{ display:flex; flex-direction:column; gap: 2px; }
+    .rowTop{ font-weight: 650; font-size: 13px; color: rgba(255,255,255,0.92); }
+    .rowSub{ font-size: 12px; color: rgba(255,255,255,0.64); }
+    .rowActions{ display:flex; gap: 8px; }
+    .chip{
+      font-family: var(--nm-mono);
+      font-size: 11px;
+      color: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      padding: 6px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .chip.good{ border-color: rgba(38,208,124,0.35); }
+    .chip.bad{ border-color: rgba(255,77,79,0.35); }
+
+    .section{ padding: calc(var(--nm-grid) * 6) 0; }
+    .sectionTitle{
+      font-size: 28px; letter-spacing: -0.5px;
+      margin: 0 0 10px;
+    }
+    .sectionSub{ color: var(--nm-muted); margin: 0 0 22px; max-width: 75ch; }
+
+    .grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--nm-grid) * 2); }
+    @media (max-width: 920px){ .grid3{ grid-template-columns: 1fr; } }
+
+    .tile{
+      border-radius: var(--nm-radius-lg);
+      border: 1px solid var(--nm-border);
+      background: rgba(255,255,255,0.03);
+      box-shadow: var(--nm-shadow-soft);
+      padding: calc(var(--nm-grid) * 3);
+      min-height: 170px;
+    }
+    .tileKicker{ font-size: 12px; color: var(--nm-faint); text-transform: uppercase; letter-spacing: 1.4px; margin: 0 0 8px; }
+    .tileH{ font-size: 16px; font-weight: 800; margin: 0 0 8px; letter-spacing: -0.2px;}
+    .tileP{ margin:0; color: var(--nm-muted); }
+
+    .steps{ display:grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--nm-grid)*2); }
+    @media (max-width: 920px){ .steps{ grid-template-columns: 1fr; } }
+    .step{
+      padding: calc(var(--nm-grid) * 3);
+      border-radius: var(--nm-radius-lg);
+      border: 1px solid var(--nm-border);
+      background: rgba(255,255,255,0.03);
+    }
+    .stepNum{
+      width: 34px; height: 34px; border-radius: 12px;
+      background: rgba(79,140,255,0.18);
+      border: 1px solid rgba(79,140,255,0.30);
+      display:flex; align-items:center; justify-content:center;
+      font-weight: 800;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 10px;
+    }
+    .stepH{ margin: 0 0 6px; font-weight: 800; letter-spacing:-0.2px; }
+    .stepP{ margin: 0; color: var(--nm-muted); }
+
+    .pricing{
+      display:grid; grid-template-columns: 1.1fr 0.9fr; gap: calc(var(--nm-grid)*2);
+      align-items: start;
+    }
+    @media (max-width: 920px){ .pricing{ grid-template-columns: 1fr; } }
+
+    .priceCard{
+      padding: calc(var(--nm-grid) * 3);
+      border-radius: var(--nm-radius-lg);
+      border: 1px solid rgba(79,140,255,0.35);
+      background: linear-gradient(180deg, rgba(79,140,255,0.10), rgba(255,255,255,0.03));
+      box-shadow: 0 18px 60px rgba(79,140,255,0.12);
+    }
+    .priceTop{ display:flex; justify-content:space-between; align-items:center; gap: 12px; }
+    .priceName{ font-weight: 900; font-size: 18px; letter-spacing: -0.3px; }
+    .badge{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.76);
+    }
+    .price{
+      margin-top: 10px;
+      font-size: 34px;
+      font-weight: 950;
+      letter-spacing: -0.8px;
+      display:flex; align-items:baseline; gap: 10px;
+    }
+    .price small{ font-size: 14px; color: var(--nm-muted); font-weight: 600; letter-spacing: 0; }
+    .priceNote{ margin: 8px 0 0; color: var(--nm-muted); }
+    .list{ margin: 18px 0 0; padding-left: 18px; color: var(--nm-muted); }
+    .list li{ margin: 8px 0; }
+
+    .faq{ display:grid; grid-template-columns: 1fr 1fr; gap: calc(var(--nm-grid)*2); }
+    @media (max-width: 920px){ .faq{ grid-template-columns: 1fr; } }
+    details{
+      border-radius: var(--nm-radius-lg);
+      border: 1px solid var(--nm-border);
+      background: rgba(255,255,255,0.03);
+      padding: calc(var(--nm-grid) * 2);
+    }
+    summary{
+      cursor:pointer;
+      font-weight: 800;
+      color: rgba(255,255,255,0.88);
+      letter-spacing: -0.2px;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display:none; }
+    details p{ margin: 10px 0 0; color: var(--nm-muted); }
+
+    .footer{
+      padding: calc(var(--nm-grid) * 5) 0 calc(var(--nm-grid) * 4);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--nm-faint);
+      font-size: 13px;
+    }
+    .footerRow{ display:flex; justify-content:space-between; gap: 14px; flex-wrap:wrap; align-items:center; }
+    .footerLinks{ display:flex; gap: 14px; flex-wrap:wrap; }
+    .muted{ color: var(--nm-muted); }
+
+    /* Optional toast for email capture (simple) */
+    .toast{
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(11,18,32,0.96);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--nm-shadow);
+      padding: 12px 14px;
+      border-radius: 14px;
+      display:none;
+      gap: 10px;
+      align-items:center;
+      max-width: min(560px, calc(100vw - 30px));
+      z-index: 9999;
+    }
+    .toast.show{ display:flex; }
+    .toast strong{ font-size: 13px; }
+    .toast span{ color: var(--nm-muted); font-size: 13px; }
+    .toast button{
+      margin-left:auto;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.88);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-weight: 700;
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>NeverMiss</div>
       </div>
-      <div class="nav-links">
+      <nav class="navlinks" aria-label="Top navigation">
+        <a href="#how">How it works</a>
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="#install" class="nav-cta">Install Free</a>
-      </div>
-    </div>
-  </nav>
+        <a href="#faq">FAQ</a>
+        <a class="btn" href="/privacy.html">Privacy</a>
+        <a class="btn primary" href="#install" id="ctaTop">Add to Chrome</a>
+      </nav>
+    </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Never Lose a Deal</h1>
-      <p class="hero-sub">Email open tracking, automated follow-up sequences, link click tracking, and deal insights — all inside Gmail.</p>
-      <div class="hero-actions">
-        <a href="#install" class="btn btn-primary btn-lg" id="install">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>
-          Add to Chrome — Free
-        </a>
-        <span class="hero-note">Free forever. No credit card required.</span>
-      </div>
-    </div>
-  </section>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div>
+        <div class="pill"><span class="dot"></span><span>Built for solo operators and small teams selling from Gmail</span></div>
+        <h1 class="h1">Turn Gmail into a follow-up machine.</h1>
+        <p class="sub">
+          NeverMiss is a tiny command center that stops deals from slipping. Your Today queue stays sharp, stale deals get nudged,
+          and every thread has context, right where you work.
+        </p>
 
-  <!-- Social proof -->
-  <section class="proof">
-    <div class="proof-inner">
-      <div class="proof-item">
-        <strong>Auto sequences</strong>
-        <span>multi-step follow-ups</span>
-      </div>
-      <div class="proof-divider"></div>
-      <div class="proof-item">
-        <strong>Unlimited</strong>
-        <span>email tracking</span>
-      </div>
-      <div class="proof-divider"></div>
-      <div class="proof-item">
-        <strong>$0/mo</strong>
-        <span>to get started</span>
-      </div>
-    </div>
-  </section>
+        <div class="ctaRow" id="install">
+          <!-- Replace href with your actual Chrome Web Store URL -->
+          <a class="btn primary" href="#" id="installBtn">Add to Chrome</a>
+          <a class="btn" href="#demo">See it inside Gmail (10s)</a>
+          <span class="fineprint">30-day Pro trial. No credit card. Then Free forever.</span>
+        </div>
 
-  <!-- Features -->
-  <section class="features" id="features">
-    <div class="features-inner">
-      <h2>Built for closers. Nothing extra.</h2>
-      <p class="features-sub">Every feature answers one question: "What should I do next?" No bloat, no CRM you'll never use.</p>
+        <p class="fineprint">
+          If you've ever thought "I'll follow up tomorrow," you already know how deals die.
+        </p>
 
-      <div class="feature-grid">
-
-        <div class="feature-card">
-          <div class="feature-icon feature-icon-blue">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
+        <!-- Pain-to-rescue block -->
+        <div class="card" style="margin-top: 18px;">
+          <div class="cardInner">
+            <p class="cardTitle">The deal dies quietly.</p>
+            <p class="cardText">
+              You meant to follow up. You got busy. They hired someone else.
+              NeverMiss keeps the next action in your face and makes finishing it satisfying.
+            </p>
           </div>
-          <h3>Follow-Up Queue</h3>
-          <p>After every sent email, choose when to follow up. NeverMiss reminds you at the right time — inside Gmail, not a separate app.</p>
-          <span class="feature-tag">The lock-in</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon feature-icon-green">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 5C7 5 2.73 8.11 1 12.5 2.73 16.89 7 20 12 20s9.27-3.11 11-7.5C21.27 8.11 17 5 12 5z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12.5" r="3" stroke="currentColor" stroke-width="2"/></svg>
-          </div>
-          <h3>Email Open Tracking</h3>
-          <p>Know who opened your email and how many times. Green eye badges appear right in your email list — no tab-switching needed.</p>
-          <span class="feature-tag">The hook</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon feature-icon-red">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <h3>Stale Deal Nudge</h3>
-          <p>Deals going cold? NeverMiss alerts you when contacts haven't heard from you in days. Re-engage, snooze, or mark done — per deal.</p>
-          <span class="feature-tag">The safety net</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon feature-icon-purple">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <h3>Deal Context</h3>
-          <p>Add stage, value, and next step to every contact — right in the thread view. Never open a conversation wondering "where were we?"</p>
-          <span class="feature-tag">The memory</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon feature-icon-amber">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>Send-Time Signal</h3>
-          <p>NeverMiss learns when each contact opens email. Before you send, it suggests the best time — and opens Gmail's Schedule Send.</p>
-          <span class="feature-tag">The edge</span>
-        </div>
-
-        <div class="feature-card feature-card-dash">
-          <div class="feature-icon feature-icon-blue">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/></svg>
-          </div>
-          <h3>Pipeline Dashboard</h3>
-          <p>See your entire deal pipeline inside Gmail. Tracked emails, open rates, follow-ups due, and pipeline value — Cold, Warm, Hot, Won.</p>
-          <span class="feature-tag">Your command center</span>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- How it works -->
-  <section class="how">
-    <div class="how-inner">
-      <h2>Works in 30 seconds</h2>
-      <div class="how-steps">
-        <div class="how-step">
-          <div class="how-num">1</div>
-          <h3>Install</h3>
-          <p>Add NeverMiss from the Chrome Web Store. One click. No configuration.</p>
-        </div>
-        <div class="how-step">
-          <div class="how-num">2</div>
-          <h3>Send</h3>
-          <p>Compose an email in Gmail. NeverMiss automatically tracks it and prompts you to set a follow-up.</p>
-        </div>
-        <div class="how-step">
-          <div class="how-num">3</div>
-          <h3>Close</h3>
-          <p>Watch opens roll in. Follow up at the right time. Never let a deal slip through the cracks.</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Pricing -->
-  <section class="pricing" id="pricing">
-    <div class="pricing-inner">
-      <h2>Simple pricing. Start free.</h2>
-      <p class="pricing-sub">Unlimited email tracking on every plan. Upgrade when you're ready.</p>
-
-      <div class="pricing-grid">
-
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <h3>Free</h3>
-            <div class="pricing-price">$0<span>/mo</span></div>
-            <p class="pricing-desc">Everything you need to start closing more deals.</p>
+      <!-- Demo mock (replace with real GIF/video later) -->
+      <div class="demo" id="demo">
+        <div class="card">
+          <div class="cardInner">
+            <p class="cardTitle">Today (3)</p>
+            <p class="cardText">The only screen that matters. Everything else supports it.</p>
           </div>
-          <ul class="pricing-features">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited email tracking</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>10 active follow-ups</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Open count (no timestamps)</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Deal context &amp; stage tracking</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Stale deal nudges</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Send-time signal</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Pipeline dashboard (view)</li>
-            <li class="pricing-feature-muted"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/></svg>"Tracked with NeverMiss" branding</li>
+          <div class="mock" aria-label="NeverMiss demo mock">
+            <div class="mockHeader">
+              <span>NeverMiss • Today</span>
+              <span class="muted">Updated just now</span>
+            </div>
+            <div class="mockBody">
+              <div class="row">
+                <div class="rowLeft">
+                  <div class="rowTop">Acme Roofing — Quote follow-up</div>
+                  <div class="rowSub">Opened 3× • last 5:15am • Stage: Warm • $8,200</div>
+                </div>
+                <div class="rowActions">
+                  <span class="chip good">Reply</span>
+                  <span class="chip">Snooze</span>
+                  <span class="chip">Done</span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="rowLeft">
+                  <div class="rowTop">Bright Plumbing — Check-in</div>
+                  <div class="rowSub">Stale: 6 days • nudge suggested</div>
+                </div>
+                <div class="rowActions">
+                  <span class="chip good">Reply</span>
+                  <span class="chip">+3d</span>
+                  <span class="chip">Done</span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="rowLeft">
+                  <div class="rowTop">Oak Street HOA — Scheduling</div>
+                  <div class="rowSub">Best send window: 7:30–9:00am</div>
+                </div>
+                <div class="rowActions">
+                  <span class="chip good">Schedule</span>
+                  <span class="chip">Snooze</span>
+                  <span class="chip">Done</span>
+                </div>
+              </div>
+
+              <div style="margin-top: 6px; color: rgba(255,255,255,0.60); font-size: 12px;">
+                Replace this mock with a real 10-second GIF once you record it.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="cardInner">
+            <p class="cardTitle">Trust posture</p>
+            <p class="cardText">Designed to feel calm on any Gmail wallpaper. Opaque panels. Clear hierarchy. No clutter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section class="section" id="how">
+      <h2 class="sectionTitle">Works in under a minute</h2>
+      <p class="sectionSub">No new workflow. No separate app. Just Gmail, finally behaving like a follow-up system.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="stepNum">1</div>
+          <h3 class="stepH">Install</h3>
+          <p class="stepP">Add NeverMiss to Chrome. It appears inside Gmail automatically.</p>
+        </div>
+        <div class="step">
+          <div class="stepNum">2</div>
+          <h3 class="stepH">Send + set the follow-up</h3>
+          <p class="stepP">After an email, choose when to follow up. NeverMiss handles the remembering.</p>
+        </div>
+        <div class="step">
+          <div class="stepNum">3</div>
+          <h3 class="stepH">Work Today</h3>
+          <p class="stepP">Reply, snooze, done. Deals stop slipping because the next action is always visible.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section" id="features">
+      <h2 class="sectionTitle">Five features. Nothing else.</h2>
+      <p class="sectionSub">
+        NeverMiss does five things perfectly. No bloat, no CRM you'll forget exists.
+        Every feature exists to prevent "silence kills the deal."
+      </p>
+
+      <div class="grid3">
+        <div class="tile">
+          <p class="tileKicker">THE LOCK-IN</p>
+          <p class="tileH">Follow-Up Queue</p>
+          <p class="tileP">After every email, choose when to follow up. NeverMiss reminds you inside Gmail, not in another app.</p>
+        </div>
+
+        <div class="tile">
+          <p class="tileKicker">THE HOOK</p>
+          <p class="tileH">Stale Deal Nudge</p>
+          <p class="tileP">When a contact hasn't heard from you in days, NeverMiss surfaces it with a nudge: re-engage, snooze, or done.</p>
+        </div>
+
+        <div class="tile">
+          <p class="tileKicker">THE SIGNAL</p>
+          <p class="tileH">Email Open Tracking</p>
+          <p class="tileP">Green eye badges in your inbox show who opened and how many times. No tab switching.</p>
+        </div>
+
+        <div class="tile">
+          <p class="tileKicker">THE SAFETY NET</p>
+          <p class="tileH">Deal Context</p>
+          <p class="tileP">Stage, value, and next step live inside the thread view. No more "where were we?"</p>
+        </div>
+
+        <div class="tile">
+          <p class="tileKicker">THE EDGE</p>
+          <p class="tileH">Send-Time Signal + Pipeline</p>
+          <p class="tileP">NeverMiss learns when each contact opens email and suggests a send window, plus a compact pipeline summary.</p>
+        </div>
+
+        <div class="tile">
+          <p class="tileKicker">THE POINT</p>
+          <p class="tileH">Your command center</p>
+          <p class="tileP">Everything exists to keep Today actionable. That's how deals stop slipping.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section" id="pricing">
+      <h2 class="sectionTitle">Pricing</h2>
+      <p class="sectionSub">Start free. Upgrade when the limits become annoying, which means you're actually using it.</p>
+
+      <div class="pricing">
+        <div class="priceCard">
+          <div class="priceTop">
+            <div class="priceName">Pro</div>
+            <div class="badge">30-day trial • no card</div>
+          </div>
+
+          <div class="price">
+            $12.99 <small>/ month</small>
+          </div>
+          <p class="priceNote"><strong>Or $99/year</strong> (best value).</p>
+
+          <ul class="list">
+            <li><strong>Unlimited follow-ups</strong> so nothing slips</li>
+            <li><strong>Unlimited tracking + stale nudges</strong> to re-open cold deals</li>
+            <li><strong>Send-time signal + sequences</strong> for faster replies</li>
           </ul>
-          <a href="#install" class="btn btn-outline btn-full">Install Free</a>
-        </div>
 
-        <div class="pricing-card pricing-card-pro">
-          <div class="pricing-badge">Most Popular</div>
-          <div class="pricing-card-header">
-            <h3>Pro</h3>
-            <div class="pricing-price">$9.99<span>/mo</span></div>
-            <p class="pricing-desc">For closers who want every advantage.</p>
+          <div class="ctaRow" style="margin-top: 16px;">
+            <a class="btn primary" href="#" id="installBtn2">Start free (trial included)</a>
+            <a class="btn" href="#faq">Questions?</a>
           </div>
-          <ul class="pricing-features">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in Free</li>
-            <li class="pricing-feature-highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#1d4ed8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>No branding</strong> in sent emails</li>
-            <li class="pricing-feature-highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#1d4ed8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>Automated follow-up sequences</strong></li>
-            <li class="pricing-feature-highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#1d4ed8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>Unlimited</strong> follow-ups</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Full open timeline with timestamps</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Real-time open &amp; click notifications</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Link click tracking</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Edit pipeline from dashboard</li>
-          </ul>
-          <a href="#install" class="btn btn-primary btn-full">Start Free, Upgrade Anytime</a>
+
+          <p class="fineprint">If NeverMiss saves one deal this year, it paid for itself.</p>
         </div>
 
+        <div class="card">
+          <div class="cardInner">
+            <p class="cardTitle">Free (forever)</p>
+            <p class="cardText">You get the core loop. You just have caps.</p>
+            <ul class="list">
+              <li>Today queue: Reply / Snooze / Done / Undo</li>
+              <li>Open badges (basic)</li>
+              <li>Deal context in-thread</li>
+              <li>Pipeline summary (read-only)</li>
+              <li><strong>Limits:</strong> 10 active follow-ups, 50 tracked threads, 10 stale-monitored threads</li>
+              <li>Send-time signal: Pro</li>
+              <li>Sequences: Pro</li>
+            </ul>
+
+            <p class="fineprint">
+              Limits are deliberate: you should feel value first, then decide.
+            </p>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <p class="pricing-compare">Less than Mailsuite ($11.99), Yesware ($15), Mixmax ($29), and HubSpot ($15+). More features included.</p>
-    </div>
-  </section>
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <h2 class="sectionTitle">FAQ</h2>
+      <p class="sectionSub">The questions that decide whether someone installs or scrolls away.</p>
 
-  <!-- CTA -->
-  <section class="cta">
-    <div class="cta-inner">
-      <h2>Stop losing deals you should've closed.</h2>
-      <p>Install NeverMiss in 10 seconds. Free forever — upgrade when you're ready.</p>
-      <a href="#install" class="btn btn-primary btn-lg">Add to Chrome — Free</a>
-    </div>
-  </section>
+      <div class="faq">
+        <details>
+          <summary>Does NeverMiss read my email content?</summary>
+          <p>
+            NeverMiss is designed to minimize data. It operates inside Gmail to power follow-ups and signals.
+            See the Privacy page for specifics and constraints.
+          </p>
+        </details>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="/icons/icon48.png" alt="NeverMiss" width="24" height="24">
-        <span>NeverMiss</span>
+        <details>
+          <summary>Will tracking hurt deliverability?</summary>
+          <p>
+            Deliverability can be affected by many factors. NeverMiss aims to be lightweight.
+            If you have strict deliverability concerns, test with a small subset first.
+          </p>
+        </details>
+
+        <details>
+          <summary>Does it work with Google Workspace Gmail?</summary>
+          <p>
+            If you can use Gmail in Chrome, it should generally work. Some org policies can restrict extensions.
+          </p>
+        </details>
+
+        <details>
+          <summary>Do I need a CRM?</summary>
+          <p>
+            No. NeverMiss is intentionally not a CRM. It's a follow-up command center inside Gmail.
+          </p>
+        </details>
+
+        <details>
+          <summary>What happens after the 30-day trial?</summary>
+          <p>
+            You keep Free forever. If you're hitting limits because you're actually using it, Pro is there.
+          </p>
+        </details>
+
+        <details>
+          <summary>How do I uninstall?</summary>
+          <p>
+            Remove it from Chrome extensions. You can also review data handling on the Privacy page.
+          </p>
+        </details>
       </div>
-      <div class="footer-links">
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/terms.html">Terms of Service</a>
-        <a href="mailto:support@nevermiss.team">Contact</a>
-      </div>
-      <div class="footer-copy">&copy; 2026 NeverMiss. All rights reserved.</div>
-    </div>
-  </footer>
+    </section>
 
+    <!-- Founder truth (honest proof, no fake testimonials) -->
+    <section class="section">
+      <div class="card">
+        <div class="cardInner">
+          <p class="cardTitle">Why this exists</p>
+          <p class="cardText">
+            This was built because a real operator needed it. Deals don't die in dramatic explosions. They die in silence.
+            NeverMiss exists to stop that, inside the inbox where work actually happens.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footerRow">
+        <div>© <span id="year"></span> NeverMiss</div>
+        <div class="footerLinks">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <strong id="toastTitle">Saved.</strong>
+    <span id="toastMsg">Check your inbox.</span>
+    <button id="toastBtn">OK</button>
+  </div>
+
+  <script>
+    // TODO: replace with your real Chrome Web Store URL
+    var CHROME_WEBSTORE_URL = "#";
+
+    function setHref(id, url){
+      var el = document.getElementById(id);
+      if(el) el.setAttribute("href", url);
+    }
+
+    setHref("installBtn", CHROME_WEBSTORE_URL);
+    setHref("installBtn2", CHROME_WEBSTORE_URL);
+
+    document.getElementById("year").textContent = String(new Date().getFullYear());
+
+    // Small helper toast (optional, currently unused)
+    (function(){
+      var toast = document.getElementById("toast");
+      var tTitle = document.getElementById("toastTitle");
+      var tMsg = document.getElementById("toastMsg");
+      var btn = document.getElementById("toastBtn");
+      if(btn){
+        btn.addEventListener("click", function(){ toast.classList.remove("show"); });
+      }
+      window.nmToast = function(title, msg){
+        tTitle.textContent = title;
+        tMsg.textContent = msg;
+        toast.classList.add("show");
+      };
+    })();
+  </script>
 </body>
 </html>

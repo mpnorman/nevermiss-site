@@ -1,135 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy Policy — NeverMiss</title>
-  <meta name="description" content="NeverMiss privacy policy. What data we collect, how we use it, and your rights.">
-  <link rel="icon" type="image/png" sizes="48x48" href="/icons/icon48.png">
-  <link rel="stylesheet" href="/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NeverMiss — Privacy</title>
+  <meta name="description" content="Privacy policy for NeverMiss." />
+  <style>
+    :root{
+      --nm-bg:#070B12; --nm-text:rgba(255,255,255,.92); --nm-muted:rgba(255,255,255,.70);
+      --nm-border:rgba(255,255,255,.10); --nm-surface:#0B1220; --nm-radius:16px;
+      --nm-font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --nm-grid: 8px;
+    }
+    body{ margin:0; font-family:var(--nm-font); color:var(--nm-text); background:var(--nm-bg); line-height:1.5; }
+    .wrap{ max-width: 920px; margin:0 auto; padding: calc(var(--nm-grid)*4); }
+    .card{ border:1px solid var(--nm-border); background:rgba(255,255,255,.03); border-radius:var(--nm-radius); padding: calc(var(--nm-grid)*3); }
+    a{ color:inherit; }
+    h1{ margin: 10px 0 8px; letter-spacing:-0.4px; }
+    p, li{ color:var(--nm-muted); }
+    code{ color: rgba(255,255,255,0.84); }
+    .top{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  </style>
 </head>
 <body>
-
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-brand">
-        <img src="/icons/icon48.png" alt="NeverMiss" width="32" height="32">
-        <span class="nav-name">NeverMiss</span>
-      </a>
-      <div class="nav-links">
-        <a href="/#features">Features</a>
-        <a href="/#pricing">Pricing</a>
-        <a href="/privacy.html">Privacy</a>
-      </div>
+  <div class="wrap">
+    <div class="top">
+      <a href="/">← Back</a>
+      <span style="color:rgba(255,255,255,.55); font-size:13px;">Last updated: <span id="d"></span></span>
     </div>
-  </nav>
 
-  <div class="legal">
-    <h1>Privacy Policy</h1>
-    <p class="legal-date">Last updated: February 20, 2026</p>
+    <h1>Privacy</h1>
+    <div class="card">
+      <p>
+        NeverMiss is built to help you manage follow-ups inside Gmail.
+        This policy is intentionally plain English. If anything here conflicts with how the extension behaves,
+        the extension behavior wins and this document must be updated.
+      </p>
 
-    <p>NeverMiss ("we", "us", "our") is a Chrome extension for Gmail that provides email open tracking, follow-up reminders, deal context, stale deal nudges, and send-time signals. This privacy policy explains what data we collect, how we use it, and your rights.</p>
+      <h3>What NeverMiss stores</h3>
+      <ul>
+        <li>Follow-up reminders you create (timing, status).</li>
+        <li>Deal context you add (stage/value/next step) for a thread/contact.</li>
+        <li>Tracking event metadata needed to show signals (e.g., opened counts and timestamps).</li>
+      </ul>
 
-    <h2>1. Data We Collect</h2>
-    <p>NeverMiss collects the minimum data needed to provide its features:</p>
-    <ul>
-      <li><strong>Recipient email addresses</strong> of people you send tracked emails to. We need this to associate open events with the correct contact.</li>
-      <li><strong>Email subjects</strong> of tracked emails. Used to match open events to conversations and display in the follow-up queue.</li>
-      <li><strong>Open events</strong> (timestamp, IP address, user agent) when a recipient opens a tracked email. Used to show you open counts, timestamps, and send-time patterns.</li>
-      <li><strong>Deal context</strong> (stage, value, next step) that you manually enter for contacts. Stored locally in your browser.</li>
-      <li><strong>Follow-up schedules</strong> that you set after sending emails. Stored locally in your browser.</li>
-      <li><strong>Extension user ID</strong> — a random identifier (UUID) generated locally. Used to associate your tracked emails with your account. This is not tied to your Google account.</li>
-      <li><strong>Email address</strong> — if you upgrade to Pro, the email you provide during Stripe checkout is stored to link your subscription.</li>
-    </ul>
+      <h3>What NeverMiss does <em>not</em> do</h3>
+      <ul>
+        <li>It does not ask for your Gmail password.</li>
+        <li>It does not sell your data.</li>
+        <li>It does not insert ads into Gmail.</li>
+      </ul>
 
-    <h2>2. Data We Do NOT Collect</h2>
-    <ul>
-      <li>Email body content — we never read, store, or transmit the content of your emails.</li>
-      <li>Your Gmail password or Google credentials.</li>
-      <li>Your contacts list beyond recipients of tracked emails.</li>
-      <li>Browsing history or activity outside of Gmail.</li>
-      <li>Any data from emails you receive (only emails you send with tracking enabled).</li>
-    </ul>
+      <h3>Data handling</h3>
+      <ul>
+        <li>Some data may be stored locally in your browser to keep the UI fast.</li>
+        <li>Some events may be sent to a backend service to support tracking and sync.</li>
+        <li>NeverMiss aims to minimize stored data and retain only what is necessary for core functionality.</li>
+      </ul>
 
-    <h2>3. How Data Is Stored</h2>
-    <ul>
-      <li><strong>Locally</strong>: Follow-ups, deal context, settings, and cached tracking data are stored in Chrome's local storage on your device. This data never leaves your browser unless explicitly synced.</li>
-      <li><strong>Server</strong>: Tracker IDs, recipient emails, subjects, and open events are stored on our secure server hosted on <a href="https://railway.app">Railway</a> with PostgreSQL. This data is needed for the tracking pixel to record opens and return them to your extension.</li>
-      <li><strong>Stripe</strong>: If you subscribe to Pro, your payment information is handled entirely by <a href="https://stripe.com">Stripe</a>. We never see or store your credit card number. We store your Stripe customer ID and subscription ID to manage your plan.</li>
-    </ul>
+      <h3>Security</h3>
+      <ul>
+        <li>The UI is rendered using safe DOM APIs (no injecting user content via <code>innerHTML</code>).</li>
+      </ul>
 
-    <h2>4. How We Use Your Data</h2>
-    <p>We use collected data solely to provide NeverMiss features:</p>
-    <ul>
-      <li>Recording and displaying email open events.</li>
-      <li>Powering follow-up reminders and stale deal nudges.</li>
-      <li>Generating send-time recommendations based on open patterns.</li>
-      <li>Managing your subscription status (free vs. Pro).</li>
-    </ul>
-    <p>We do <strong>not</strong> use your data for advertising, profiling, or any purpose beyond providing the NeverMiss service.</p>
+      <h3>Contact</h3>
+      <p>
+        Questions? Email: <a href="mailto:support@nevermiss.team">support@nevermiss.team</a>
+      </p>
 
-    <h2>5. Data Sharing</h2>
-    <p>We do not sell, rent, or share your data with third parties, except:</p>
-    <ul>
-      <li><strong>Stripe</strong>: Processes payments for Pro subscriptions. Stripe's privacy policy applies to payment data.</li>
-      <li><strong>Railway</strong>: Hosts our server infrastructure. Railway's security policies apply to server-side data.</li>
-      <li><strong>Law enforcement</strong>: We may disclose data if required by law or valid legal process.</li>
-    </ul>
-
-    <h2>6. Data Retention</h2>
-    <ul>
-      <li>Tracked email records and open events are retained for as long as you use the extension.</li>
-      <li>Local data (follow-ups, deal context) is stored until you clear it or uninstall the extension.</li>
-      <li>If you uninstall NeverMiss, local data is automatically deleted by Chrome. Server-side data can be deleted on request.</li>
-    </ul>
-
-    <h2>7. Your Rights</h2>
-    <p>You can:</p>
-    <ul>
-      <li><strong>Delete local data</strong> at any time by clearing extension storage in Chrome settings or uninstalling NeverMiss.</li>
-      <li><strong>Request deletion of server data</strong> by emailing <a href="mailto:support@nevermiss.team">support@nevermiss.team</a>. We will delete all tracker records and open events associated with your user ID within 30 days.</li>
-      <li><strong>Cancel your subscription</strong> at any time through the billing portal accessible from the extension.</li>
-      <li><strong>Export your data</strong> by requesting it via email. We will provide a copy of your server-side data in a standard format.</li>
-    </ul>
-
-    <h2>8. Security</h2>
-    <p>We take reasonable measures to protect your data:</p>
-    <ul>
-      <li>All communication between the extension and our server uses HTTPS/TLS encryption.</li>
-      <li>The server uses parameterized SQL queries to prevent injection attacks.</li>
-      <li>The extension uses <code>createElement</code> and <code>textContent</code> for all DOM manipulation — never <code>innerHTML</code> with user data.</li>
-      <li>Payment processing is handled entirely by Stripe, a PCI Level 1 certified service provider.</li>
-    </ul>
-
-    <h2>9. Tracking Pixel</h2>
-    <p>NeverMiss works by inserting a 1x1 invisible pixel image into tracked emails. When a recipient opens the email, their email client loads this image, which records an open event. This is the same technique used by all major email tracking services (Mailtrack, HubSpot, Yesware, etc.).</p>
-    <p>The tracking pixel records: the tracker ID, timestamp, the opener's IP address, and user agent string. It does not record email content, attachments, or any other information.</p>
-
-    <h2>10. Children's Privacy</h2>
-    <p>NeverMiss is not intended for use by anyone under 16 years of age. We do not knowingly collect data from children.</p>
-
-    <h2>11. Changes to This Policy</h2>
-    <p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated date. Continued use of NeverMiss after changes constitutes acceptance of the updated policy.</p>
-
-    <h2>12. Contact</h2>
-    <p>For privacy questions, data deletion requests, or concerns:</p>
-    <p>Email: <a href="mailto:support@nevermiss.team">support@nevermiss.team</a></p>
+      <p style="color:rgba(255,255,255,.55); font-size:13px;">
+        Note: You should align this page precisely with your Chrome Web Store "Privacy practices" disclosures.
+      </p>
+    </div>
   </div>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="/icons/icon48.png" alt="NeverMiss" width="24" height="24">
-        <span>NeverMiss</span>
-      </div>
-      <div class="footer-links">
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/terms.html">Terms of Service</a>
-        <a href="mailto:support@nevermiss.team">Contact</a>
-      </div>
-      <div class="footer-copy">&copy; 2026 NeverMiss. All rights reserved.</div>
-    </div>
-  </footer>
-
+  <script>
+    document.getElementById("d").textContent = new Date().toISOString().slice(0,10);
+  </script>
 </body>
 </html>
