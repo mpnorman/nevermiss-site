@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to Create a Follow-Up System in Gmail — NeverMiss</title>
+  <meta name="description" content="Build a reliable follow-up system inside Gmail. Learn the manual method, then see how NeverMiss automates it with a Today queue, stale nudges, and open tracking." />
+  <meta name="theme-color" content="#0B1220" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="canonical" href="https://nevermiss.team/how-to/create-a-follow-up-system-in-gmail" />
+
+  <meta property="og:title" content="How to Create a Follow-Up System in Gmail" />
+  <meta property="og:description" content="Stop losing deals to forgotten follow-ups. Here's how to build a system — manual or automated." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://nevermiss.team/how-to/create-a-follow-up-system-in-gmail" />
+
+  <style>
+    :root{
+      --nm-bg:#070B12;--nm-surface:#0B1220;--nm-surface-2:#0E172A;
+      --nm-border:rgba(255,255,255,0.10);--nm-text:rgba(255,255,255,0.92);
+      --nm-muted:rgba(255,255,255,0.70);--nm-faint:rgba(255,255,255,0.52);
+      --nm-accent:#4F8CFF;--nm-success:#26D07C;--nm-danger:#FF4D4F;
+      --nm-radius-lg:18px;--nm-radius-md:14px;--nm-radius-sm:10px;
+      --nm-shadow:0 18px 60px rgba(0,0,0,0.55);
+      --nm-shadow-soft:0 10px 30px rgba(0,0,0,0.35);
+      --nm-grid:8px;--nm-max:1120px;
+      --nm-font:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      --nm-mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    }
+    *{box-sizing:border-box}html,body{height:100%}
+    body{margin:0;font-family:var(--nm-font);color:var(--nm-text);background:radial-gradient(1200px 700px at 15% 8%,rgba(79,140,255,0.25),transparent 60%),radial-gradient(900px 520px at 85% 18%,rgba(38,208,124,0.16),transparent 60%),radial-gradient(800px 500px at 50% 100%,rgba(255,77,79,0.12),transparent 60%),var(--nm-bg);line-height:1.45}
+    a{color:inherit;text-decoration:none}a:hover{text-decoration:underline;text-decoration-color:rgba(255,255,255,0.25)}
+    .wrap{max-width:var(--nm-max);margin:0 auto;padding:calc(var(--nm-grid)*4)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:calc(var(--nm-grid)*2) 0}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:0.2px}
+    .logo{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,rgba(79,140,255,0.9),rgba(38,208,124,0.75));box-shadow:0 10px 30px rgba(79,140,255,0.18)}
+    .navlinks{display:flex;gap:calc(var(--nm-grid)*2);color:var(--nm-muted);font-size:14px;align-items:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:12px;border:1px solid var(--nm-border);background:rgba(255,255,255,0.04);color:var(--nm-text);font-weight:650;font-size:14px;cursor:pointer;user-select:none;transition:transform 120ms ease,background 120ms ease,border-color 120ms ease;text-decoration:none !important;gap:10px}
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.16)}
+    .btn:active{transform:translateY(0)}
+    .btn.primary{background:linear-gradient(180deg,rgba(79,140,255,0.98),rgba(79,140,255,0.78));border-color:rgba(79,140,255,0.55);box-shadow:0 16px 45px rgba(79,140,255,0.22);color:#081022}
+    .btn.primary:hover{border-color:rgba(79,140,255,0.7)}
+
+    .article{max-width:720px;padding:calc(var(--nm-grid)*6) 0}
+    .article h1{font-size:clamp(30px,3.8vw,48px);line-height:1.08;letter-spacing:-0.6px;margin:0 0 16px}
+    .article h2{font-size:22px;letter-spacing:-0.3px;margin:32px 0 10px}
+    .article h3{font-size:17px;margin:24px 0 8px}
+    .article p,.article li{color:var(--nm-muted);line-height:1.6}
+    .article p{margin:0 0 14px}
+    .article ul,.article ol{padding-left:20px;margin:0 0 14px}
+    .article li{margin:6px 0}
+    .article strong{color:var(--nm-text)}
+    .article a{color:var(--nm-accent)}
+    .article a:hover{text-decoration:underline}
+    .kicker{font-size:13px;color:var(--nm-faint);text-transform:uppercase;letter-spacing:1.4px;margin:0 0 8px}
+
+    .step-box{border-radius:var(--nm-radius-lg);border:1px solid var(--nm-border);background:rgba(255,255,255,0.03);padding:calc(var(--nm-grid)*3);margin:16px 0}
+    .step-box h3{margin:0 0 8px}
+    .step-box p{margin:0 0 8px}
+
+    .callout{border-radius:var(--nm-radius-lg);border:1px solid rgba(79,140,255,0.25);background:rgba(79,140,255,0.06);padding:calc(var(--nm-grid)*3);margin:20px 0}
+    .callout p{margin:0}
+
+    .cta-box{border-radius:var(--nm-radius-lg);border:1px solid rgba(79,140,255,0.35);background:linear-gradient(180deg,rgba(79,140,255,0.10),rgba(255,255,255,0.03));box-shadow:0 18px 60px rgba(79,140,255,0.12);padding:calc(var(--nm-grid)*3);margin:32px 0}
+    .cta-box p{margin:0 0 14px}
+    .cta-box .btn{margin-top:4px}
+
+    .related{margin:32px 0 0;padding:20px 0 0;border-top:1px solid var(--nm-border)}
+    .related p{font-size:13px;color:var(--nm-faint);margin:0 0 8px}
+    .related a{display:inline-block;margin:0 14px 8px 0;font-size:14px;color:var(--nm-accent)}
+
+    .footer{padding:calc(var(--nm-grid)*5) 0 calc(var(--nm-grid)*4);border-top:1px solid rgba(255,255,255,0.08);color:var(--nm-faint);font-size:13px}
+    .footerRow{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
+    .footerLinks{display:flex;gap:14px;flex-wrap:wrap}
+
+    @media(max-width:920px){.navlinks{display:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <a class="brand" href="/">
+        <div class="logo" aria-hidden="true"></div>
+        <div>NeverMiss</div>
+      </a>
+      <nav class="navlinks" aria-label="Top navigation">
+        <a href="/#features">Features</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/#faq">FAQ</a>
+        <a class="btn primary" href="/#install">Add to Chrome</a>
+      </nav>
+    </header>
+
+    <article class="article">
+      <p class="kicker">How To</p>
+      <h1>How to create a follow-up system in Gmail</h1>
+
+      <p>
+        Gmail is where deals happen — but it has no built-in follow-up system. Emails arrive, you reply,
+        and then the thread disappears into the archive. If nobody replies, you have to remember to check.
+        Most people don't.
+      </p>
+      <p>
+        Research consistently shows that most sales require multiple follow-ups, but the majority of
+        salespeople stop after one. The problem isn't laziness — it's that there's no system keeping
+        the next action visible.
+      </p>
+      <p>Here's how to build one.</p>
+
+      <h2>Method 1: The manual system (free, fragile)</h2>
+      <p>You can build a basic follow-up system using Gmail's native features. It works — if you're disciplined.</p>
+
+      <div class="step-box">
+        <h3>Step 1: Create a "Follow Up" label</h3>
+        <p>In Gmail, create a label called "Follow Up" (or "Waiting"). Apply it to any thread where you're waiting for a reply.</p>
+      </div>
+
+      <div class="step-box">
+        <h3>Step 2: Use Gmail's snooze</h3>
+        <p>
+          After sending an email, snooze the thread to the day you want to follow up. When that day arrives,
+          the email reappears at the top of your inbox.
+        </p>
+      </div>
+
+      <div class="step-box">
+        <h3>Step 3: Block 15 minutes each morning</h3>
+        <p>
+          Start your day by opening the "Follow Up" label and checking every snoozed thread.
+          Reply, snooze again, or remove the label.
+        </p>
+      </div>
+
+      <div class="step-box">
+        <h3>Step 4: Review weekly</h3>
+        <p>
+          Once a week, scan for threads you labeled but forgot to snooze. These are the deals
+          slipping through the cracks.
+        </p>
+      </div>
+
+      <div class="callout">
+        <p>
+          <strong>The weakness:</strong> This system depends entirely on you. If you skip the morning block,
+          forget to label a thread, or snooze past a deadline — the deal goes cold with no safety net.
+          There's also no visibility into who opened your email or which deals are going stale.
+        </p>
+      </div>
+
+      <h2>Method 2: A spreadsheet tracker (free, tedious)</h2>
+      <p>
+        Some people maintain a spreadsheet with columns for contact name, last email date, next follow-up date,
+        deal value, and status. This gives you a pipeline view Gmail doesn't have.
+      </p>
+      <p>
+        The problem: you have to manually update it after every email. Within a week, the spreadsheet drifts
+        from reality. Within a month, it's abandoned.
+      </p>
+
+      <h2>Method 3: Automate it with a tool</h2>
+      <p>
+        The most reliable approach is to let a tool handle the remembering. The best tools for this
+        live inside Gmail (so you don't need to switch tabs) and surface your follow-ups automatically.
+      </p>
+
+      <p>Here's what an automated follow-up system should do:</p>
+      <ol>
+        <li><strong>Capture the follow-up at the moment you send.</strong> Right after sending an email, you set when to follow up. One click, not a separate app.</li>
+        <li><strong>Build a daily queue.</strong> Each morning, you see a prioritized list of who to contact today — with context on each deal.</li>
+        <li><strong>Show who's engaged.</strong> Email open tracking tells you who read your last message. A contact who opened your email 3 times is warmer than one who hasn't opened it at all.</li>
+        <li><strong>Catch stale deals automatically.</strong> If you haven't emailed someone in 5+ days and the deal is still open, the system should flag it — not wait for you to notice.</li>
+        <li><strong>Let you act immediately.</strong> Reply, snooze to a new date, or mark done — all from the queue, all inside Gmail.</li>
+      </ol>
+
+      <h2>How NeverMiss does this</h2>
+      <p>
+        NeverMiss is a Chrome extension built specifically for this workflow. After you send an email,
+        a small prompt lets you set the follow-up date. NeverMiss then builds your Today queue — a
+        prioritized list of everyone you need to contact today.
+      </p>
+      <p>Each item in the queue shows:</p>
+      <ul>
+        <li>Whether the contact opened your last email (and how many times)</li>
+        <li>The deal stage and value</li>
+        <li>How many days since your last contact</li>
+        <li>The optimal send time based on their open patterns</li>
+      </ul>
+      <p>
+        Stale deals — threads with no activity for a configurable number of days — get nudged automatically.
+        You don't have to remember to check. The system checks for you.
+      </p>
+
+      <div class="cta-box">
+        <p><strong>Try NeverMiss free for 30 days.</strong> No credit card. Install in under a minute, then start setting follow-ups on your next email.</p>
+        <a class="btn primary" href="/#install">Add to Chrome</a>
+      </div>
+
+      <div class="related">
+        <p>Related</p>
+        <a href="/how-to/track-email-opens-in-gmail">How to track email opens in Gmail</a>
+        <a href="/best/follow-up-reminder-tool-for-gmail">Best follow-up reminder tool for Gmail</a>
+        <a href="/alternative/streak">Streak alternative</a>
+        <a href="/alternative/hubspot">HubSpot alternative</a>
+      </div>
+    </article>
+
+    <footer class="footer">
+      <div class="footerRow">
+        <div>&copy; <span id="year"></span> NeverMiss</div>
+        <div class="footerLinks">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/">Home</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script>document.getElementById("year").textContent=String(new Date().getFullYear());</script>
+</body>
+</html>
