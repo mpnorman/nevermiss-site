@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yesware Alternative for Gmail — NeverMiss</title>
+  <meta name="description" content="Yesware is built for Salesforce teams. NeverMiss is built for solo sellers. Get follow-up queues, open tracking, and deal context inside Gmail — without the Salesforce dependency." />
+  <meta name="theme-color" content="#0B1220" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="canonical" href="https://nevermiss.team/alternative/yesware" />
+  <meta property="og:title" content="Yesware Alternative for Gmail — NeverMiss" />
+  <meta property="og:description" content="Sales email tools don't need to depend on Salesforce. Here's the standalone approach." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nevermiss.team/alternative/yesware" />
+  <style>
+    :root{--nm-bg:#070B12;--nm-surface:#0B1220;--nm-surface-2:#0E172A;--nm-border:rgba(255,255,255,0.10);--nm-text:rgba(255,255,255,0.92);--nm-muted:rgba(255,255,255,0.70);--nm-faint:rgba(255,255,255,0.52);--nm-accent:#4F8CFF;--nm-success:#26D07C;--nm-danger:#FF4D4F;--nm-radius-lg:18px;--nm-radius-md:14px;--nm-radius-sm:10px;--nm-shadow:0 18px 60px rgba(0,0,0,0.55);--nm-shadow-soft:0 10px 30px rgba(0,0,0,0.35);--nm-grid:8px;--nm-max:1120px;--nm-font:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";--nm-mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    *{box-sizing:border-box}html,body{height:100%}
+    body{margin:0;font-family:var(--nm-font);color:var(--nm-text);background:radial-gradient(1200px 700px at 15% 8%,rgba(79,140,255,0.25),transparent 60%),radial-gradient(900px 520px at 85% 18%,rgba(38,208,124,0.16),transparent 60%),radial-gradient(800px 500px at 50% 100%,rgba(255,77,79,0.12),transparent 60%),var(--nm-bg);line-height:1.45}
+    a{color:inherit;text-decoration:none}a:hover{text-decoration:underline;text-decoration-color:rgba(255,255,255,0.25)}
+    .wrap{max-width:var(--nm-max);margin:0 auto;padding:calc(var(--nm-grid)*4)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:calc(var(--nm-grid)*2) 0}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:0.2px}
+    .logo{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,rgba(79,140,255,0.9),rgba(38,208,124,0.75));box-shadow:0 10px 30px rgba(79,140,255,0.18)}
+    .navlinks{display:flex;gap:calc(var(--nm-grid)*2);color:var(--nm-muted);font-size:14px;align-items:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:12px;border:1px solid var(--nm-border);background:rgba(255,255,255,0.04);color:var(--nm-text);font-weight:650;font-size:14px;cursor:pointer;user-select:none;transition:transform 120ms ease,background 120ms ease,border-color 120ms ease;text-decoration:none !important;gap:10px}
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.16)}
+    .btn:active{transform:translateY(0)}
+    .btn.primary{background:linear-gradient(180deg,rgba(79,140,255,0.98),rgba(79,140,255,0.78));border-color:rgba(79,140,255,0.55);box-shadow:0 16px 45px rgba(79,140,255,0.22);color:#081022}
+    .btn.primary:hover{border-color:rgba(79,140,255,0.7)}
+    .article{max-width:720px;padding:calc(var(--nm-grid)*6) 0}
+    .article h1{font-size:clamp(30px,3.8vw,48px);line-height:1.08;letter-spacing:-0.6px;margin:0 0 16px}
+    .article h2{font-size:22px;letter-spacing:-0.3px;margin:32px 0 10px}
+    .article p,.article li{color:var(--nm-muted);line-height:1.6}
+    .article p{margin:0 0 14px}
+    .article ul{padding-left:20px;margin:0 0 14px}
+    .article li{margin:6px 0}
+    .article strong{color:var(--nm-text)}
+    .article a{color:var(--nm-accent)}
+    .article a:hover{text-decoration:underline}
+    .kicker{font-size:13px;color:var(--nm-faint);text-transform:uppercase;letter-spacing:1.4px;margin:0 0 8px}
+    .vs-table{width:100%;border-collapse:collapse;margin:0 0 20px}
+    .vs-table th,.vs-table td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--nm-border);font-size:14px}
+    .vs-table th{color:var(--nm-faint);font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+    .vs-table td{color:var(--nm-muted)}
+    .vs-table td:first-child{color:var(--nm-text);font-weight:600}
+    .cta-box{border-radius:var(--nm-radius-lg);border:1px solid rgba(79,140,255,0.35);background:linear-gradient(180deg,rgba(79,140,255,0.10),rgba(255,255,255,0.03));box-shadow:0 18px 60px rgba(79,140,255,0.12);padding:calc(var(--nm-grid)*3);margin:32px 0}
+    .cta-box p{margin:0 0 14px}
+    .cta-box .btn{margin-top:4px}
+    .related{margin:32px 0 0;padding:20px 0 0;border-top:1px solid var(--nm-border)}
+    .related p{font-size:13px;color:var(--nm-faint);margin:0 0 8px}
+    .related a{display:inline-block;margin:0 14px 8px 0;font-size:14px;color:var(--nm-accent)}
+    .footer{padding:calc(var(--nm-grid)*5) 0 calc(var(--nm-grid)*4);border-top:1px solid rgba(255,255,255,0.08);color:var(--nm-faint);font-size:13px}
+    .footerRow{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
+    .footerLinks{display:flex;gap:14px;flex-wrap:wrap}
+    @media(max-width:920px){.navlinks{display:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav"><a class="brand" href="/"><div class="logo" aria-hidden="true"></div><div>NeverMiss</div></a><nav class="navlinks" aria-label="Top navigation"><a href="/#features">Features</a><a href="/#pricing">Pricing</a><a href="/#faq">FAQ</a><a class="btn primary" href="/#install">Add to Chrome</a></nav></header>
+    <article class="article">
+      <p class="kicker">Alternative</p>
+      <h1>A Yesware alternative that doesn't need Salesforce</h1>
+
+      <p>Yesware is a sales productivity tool that adds email tracking, templates, and meeting scheduling to Gmail and Outlook. Its biggest selling point? Deep Salesforce integration — emails automatically sync to Salesforce records.</p>
+      <p>That's perfect if you're on Salesforce. If you're not, you're paying for a tool whose core value proposition doesn't apply to you.</p>
+
+      <h2>Where Yesware assumes too much</h2>
+      <ul>
+        <li><strong>Salesforce-centric design.</strong> Yesware's most valuable features — activity sync, CRM sidebar, opportunity tracking — require a Salesforce subscription. Without it, you're getting a tracking tool at a premium price.</li>
+        <li><strong>Enterprise pricing.</strong> Plans start at $15/user/month for basic tracking and go to $65/user/month for the Salesforce integration. The sweet spot is the mid-tier at $35/month — still expensive for solo sellers.</li>
+        <li><strong>Templates over workflow.</strong> Yesware leans heavily into email templates and multi-touch campaigns. If your selling is 1:1 and conversational, the template library isn't as useful.</li>
+        <li><strong>No daily follow-up queue.</strong> Yesware tracks opens and template usage but doesn't build a prioritized daily list of who to follow up with. You still manage your own follow-up discipline.</li>
+        <li><strong>No stale deal detection.</strong> Yesware reports on email activity but doesn't proactively alert you when specific deals have gone quiet.</li>
+      </ul>
+
+      <h2>How NeverMiss compares</h2>
+
+      <table class="vs-table">
+        <tr><th></th><th>Yesware</th><th>NeverMiss</th></tr>
+        <tr><td>Core model</td><td>Sales productivity + Salesforce sync</td><td>Follow-up command center</td></tr>
+        <tr><td>CRM dependency</td><td>Best with Salesforce</td><td>Standalone (no CRM needed)</td></tr>
+        <tr><td>Follow-up workflow</td><td>Templates + reminders</td><td>Today queue: reply / snooze / done</td></tr>
+        <tr><td>Email tracking</td><td>Opens + link clicks</td><td>Open count + timestamp per thread</td></tr>
+        <tr><td>Stale deal detection</td><td>Not built-in</td><td>Automatic nudges when deals go cold</td></tr>
+        <tr><td>Deal context in-thread</td><td>Via Salesforce sidebar</td><td>Stage, value, next step — native</td></tr>
+        <tr><td>Setup time</td><td>30+ min (Salesforce config)</td><td>Under a minute</td></tr>
+        <tr><td>Price</td><td>$15–65/user/mo</td><td>Free or $12.99/mo</td></tr>
+      </table>
+
+      <h2>Who should stay on Yesware</h2>
+      <p>If your team runs Salesforce and needs email activity synced to CRM records, Yesware does that seamlessly. It's also strong for teams that rely on email templates and multi-touch campaigns at scale.</p>
+
+      <h2>Who NeverMiss is for</h2>
+      <p>People who sell from Gmail and don't use (or want) Salesforce. If your pipeline is in your inbox and your biggest problem is follow-up discipline — not CRM sync — NeverMiss gives you the workflow without the enterprise dependency.</p>
+
+      <div class="cta-box"><p><strong>Try NeverMiss free for 30 days.</strong> No credit card. No Salesforce required. Just a follow-up system that works.</p><a class="btn primary" href="/#install">Add to Chrome</a></div>
+      <div class="related"><p>Related</p><a href="/alternative/salesforce">Salesforce alternative</a><a href="/alternative/mixmax">Mixmax alternative</a><a href="/how-to/run-sales-from-gmail-without-salesforce">How to run sales from Gmail without Salesforce</a><a href="/best/follow-up-reminder-tool-for-gmail">Best follow-up reminder tool for Gmail</a></div>
+    </article>
+    <footer class="footer"><div class="footerRow"><div>&copy; <span id="year"></span> NeverMiss</div><div class="footerLinks"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/">Home</a></div></div></footer>
+  </div>
+  <script>document.getElementById("year").textContent=String(new Date().getFullYear());</script>
+</body>
+</html>

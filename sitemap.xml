@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core pages -->
+  <url><loc>https://nevermiss.team</loc><priority>1.0</priority></url>
+  <url><loc>https://nevermiss.team/privacy</loc><priority>0.3</priority></url>
+  <url><loc>https://nevermiss.team/terms</loc><priority>0.3</priority></url>
+
+  <!-- Alternative to X -->
+  <url><loc>https://nevermiss.team/alternative/hubspot</loc><priority>0.8</priority></url>
+  <url><loc>https://nevermiss.team/alternative/streak</loc><priority>0.8</priority></url>
+  <url><loc>https://nevermiss.team/alternative/pipedrive</loc><priority>0.8</priority></url>
+  <url><loc>https://nevermiss.team/alternative/boomerang</loc><priority>0.8</priority></url>
+  <url><loc>https://nevermiss.team/alternative/salesforce</loc><priority>0.8</priority></url>
+  <url><loc>https://nevermiss.team/alternative/mixmax</loc><priority>0.8</priority></url>
+  <url><loc>https://nevermiss.team/alternative/mailtrack</loc><priority>0.8</priority></url>
+  <url><loc>https://nevermiss.team/alternative/copper</loc><priority>0.8</priority></url>
+  <url><loc>https://nevermiss.team/alternative/yesware</loc><priority>0.8</priority></url>
+
+  <!-- Best tool for use case -->
+  <url><loc>https://nevermiss.team/best/follow-up-reminder-tool-for-gmail</loc><priority>0.8</priority></url>
+  <url><loc>https://nevermiss.team/best/deal-management-tool-without-a-crm</loc><priority>0.8</priority></url>
+  <url><loc>https://nevermiss.team/best/gmail-crm-for-freelancers</loc><priority>0.8</priority></url>
+  <url><loc>https://nevermiss.team/best/email-tracking-extension-for-chrome</loc><priority>0.8</priority></url>
+  <url><loc>https://nevermiss.team/best/sales-tool-for-solopreneurs</loc><priority>0.8</priority></url>
+
+  <!-- How-to guides -->
+  <url><loc>https://nevermiss.team/how-to/create-a-follow-up-system-in-gmail</loc><priority>0.7</priority></url>
+  <url><loc>https://nevermiss.team/how-to/track-email-opens-in-gmail</loc><priority>0.7</priority></url>
+  <url><loc>https://nevermiss.team/how-to/stop-deals-from-going-stale</loc><priority>0.7</priority></url>
+  <url><loc>https://nevermiss.team/how-to/follow-up-after-cold-email</loc><priority>0.7</priority></url>
+  <url><loc>https://nevermiss.team/how-to/keep-track-of-deals-without-crm</loc><priority>0.7</priority></url>
+  <url><loc>https://nevermiss.team/how-to/manage-sales-pipeline-in-gmail</loc><priority>0.7</priority></url>
+  <url><loc>https://nevermiss.team/how-to/automate-follow-up-reminders-in-gmail</loc><priority>0.7</priority></url>
+  <url><loc>https://nevermiss.team/how-to/run-sales-from-gmail-without-salesforce</loc><priority>0.7</priority></url>
+  <url><loc>https://nevermiss.team/how-to/manage-client-follow-ups-as-freelancer</loc><priority>0.7</priority></url>
+
+  <!-- Comparisons -->
+  <url><loc>https://nevermiss.team/compare/streak-vs-nevermiss</loc><priority>0.7</priority></url>
+  <url><loc>https://nevermiss.team/compare/boomerang-vs-nevermiss</loc><priority>0.7</priority></url>
+  <url><loc>https://nevermiss.team/compare/mailtrack-vs-nevermiss</loc><priority>0.7</priority></url>
+  <url><loc>https://nevermiss.team/compare/copper-vs-nevermiss</loc><priority>0.7</priority></url>
+
+  <!-- Glossary -->
+  <url><loc>https://nevermiss.team/glossary/follow-up-email</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/follow-up-cadence</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/follow-up-reminder</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/sales-pipeline</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/stale-deal</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/email-open-tracking</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/pipeline-stage</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/deal-stage</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/email-open-rate</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/crm-inside-gmail</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/win-rate</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/sales-cycle-length</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/speed-to-lead</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/deal-value</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/breakup-email</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/next-action-date</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/pipeline-velocity</loc><priority>0.5</priority></url>
+  <url><loc>https://nevermiss.team/glossary/send-time-optimization</loc><priority>0.5</priority></url>
+</urlset>
