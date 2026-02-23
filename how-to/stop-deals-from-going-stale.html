@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to Stop Deals From Going Stale — NeverMiss</title>
+  <meta name="description" content="Deals don't die in dramatic explosions — they die in silence. Learn how to detect stale deals early, re-engage cold prospects, and build a system that prevents it." />
+  <meta name="theme-color" content="#0B1220" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="canonical" href="https://nevermiss.team/how-to/stop-deals-from-going-stale" />
+
+  <meta property="og:title" content="How to Stop Deals From Going Stale" />
+  <meta property="og:description" content="Deals die in silence. Here's how to catch them before they go cold." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://nevermiss.team/how-to/stop-deals-from-going-stale" />
+
+  <style>
+    :root{
+      --nm-bg:#070B12;--nm-surface:#0B1220;--nm-surface-2:#0E172A;
+      --nm-border:rgba(255,255,255,0.10);--nm-text:rgba(255,255,255,0.92);
+      --nm-muted:rgba(255,255,255,0.70);--nm-faint:rgba(255,255,255,0.52);
+      --nm-accent:#4F8CFF;--nm-success:#26D07C;--nm-danger:#FF4D4F;
+      --nm-radius-lg:18px;--nm-radius-md:14px;--nm-radius-sm:10px;
+      --nm-shadow:0 18px 60px rgba(0,0,0,0.55);
+      --nm-shadow-soft:0 10px 30px rgba(0,0,0,0.35);
+      --nm-grid:8px;--nm-max:1120px;
+      --nm-font:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      --nm-mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    }
+    *{box-sizing:border-box}html,body{height:100%}
+    body{margin:0;font-family:var(--nm-font);color:var(--nm-text);background:radial-gradient(1200px 700px at 15% 8%,rgba(79,140,255,0.25),transparent 60%),radial-gradient(900px 520px at 85% 18%,rgba(38,208,124,0.16),transparent 60%),radial-gradient(800px 500px at 50% 100%,rgba(255,77,79,0.12),transparent 60%),var(--nm-bg);line-height:1.45}
+    a{color:inherit;text-decoration:none}a:hover{text-decoration:underline;text-decoration-color:rgba(255,255,255,0.25)}
+    .wrap{max-width:var(--nm-max);margin:0 auto;padding:calc(var(--nm-grid)*4)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:calc(var(--nm-grid)*2) 0}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:0.2px}
+    .logo{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,rgba(79,140,255,0.9),rgba(38,208,124,0.75));box-shadow:0 10px 30px rgba(79,140,255,0.18)}
+    .navlinks{display:flex;gap:calc(var(--nm-grid)*2);color:var(--nm-muted);font-size:14px;align-items:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:12px;border:1px solid var(--nm-border);background:rgba(255,255,255,0.04);color:var(--nm-text);font-weight:650;font-size:14px;cursor:pointer;user-select:none;transition:transform 120ms ease,background 120ms ease,border-color 120ms ease;text-decoration:none !important;gap:10px}
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.16)}
+    .btn:active{transform:translateY(0)}
+    .btn.primary{background:linear-gradient(180deg,rgba(79,140,255,0.98),rgba(79,140,255,0.78));border-color:rgba(79,140,255,0.55);box-shadow:0 16px 45px rgba(79,140,255,0.22);color:#081022}
+    .btn.primary:hover{border-color:rgba(79,140,255,0.7)}
+
+    .article{max-width:720px;padding:calc(var(--nm-grid)*6) 0}
+    .article h1{font-size:clamp(30px,3.8vw,48px);line-height:1.08;letter-spacing:-0.6px;margin:0 0 16px}
+    .article h2{font-size:22px;letter-spacing:-0.3px;margin:32px 0 10px}
+    .article h3{font-size:17px;margin:24px 0 8px}
+    .article p,.article li{color:var(--nm-muted);line-height:1.6}
+    .article p{margin:0 0 14px}
+    .article ul,.article ol{padding-left:20px;margin:0 0 14px}
+    .article li{margin:6px 0}
+    .article strong{color:var(--nm-text)}
+    .article a{color:var(--nm-accent)}
+    .article a:hover{text-decoration:underline}
+    .kicker{font-size:13px;color:var(--nm-faint);text-transform:uppercase;letter-spacing:1.4px;margin:0 0 8px}
+
+    .callout{border-radius:var(--nm-radius-lg);border:1px solid rgba(255,77,79,0.25);background:rgba(255,77,79,0.06);padding:calc(var(--nm-grid)*3);margin:20px 0}
+    .callout p{margin:0 0 8px}
+    .callout p:last-child{margin:0}
+
+    .callout-blue{border-radius:var(--nm-radius-lg);border:1px solid rgba(79,140,255,0.25);background:rgba(79,140,255,0.06);padding:calc(var(--nm-grid)*3);margin:20px 0}
+    .callout-blue p{margin:0 0 8px}
+    .callout-blue p:last-child{margin:0}
+
+    .step-box{border-radius:var(--nm-radius-lg);border:1px solid var(--nm-border);background:rgba(255,255,255,0.03);padding:calc(var(--nm-grid)*3);margin:16px 0}
+    .step-box h3{margin:0 0 8px}
+    .step-box p{margin:0 0 8px}
+    .step-box p:last-child{margin:0}
+
+    .cta-box{border-radius:var(--nm-radius-lg);border:1px solid rgba(79,140,255,0.35);background:linear-gradient(180deg,rgba(79,140,255,0.10),rgba(255,255,255,0.03));box-shadow:0 18px 60px rgba(79,140,255,0.12);padding:calc(var(--nm-grid)*3);margin:32px 0}
+    .cta-box p{margin:0 0 14px}
+    .cta-box .btn{margin-top:4px}
+
+    .related{margin:32px 0 0;padding:20px 0 0;border-top:1px solid var(--nm-border)}
+    .related p{font-size:13px;color:var(--nm-faint);margin:0 0 8px}
+    .related a{display:inline-block;margin:0 14px 8px 0;font-size:14px;color:var(--nm-accent)}
+
+    .footer{padding:calc(var(--nm-grid)*5) 0 calc(var(--nm-grid)*4);border-top:1px solid rgba(255,255,255,0.08);color:var(--nm-faint);font-size:13px}
+    .footerRow{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
+    .footerLinks{display:flex;gap:14px;flex-wrap:wrap}
+
+    @media(max-width:920px){.navlinks{display:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <a class="brand" href="/">
+        <div class="logo" aria-hidden="true"></div>
+        <div>NeverMiss</div>
+      </a>
+      <nav class="navlinks" aria-label="Top navigation">
+        <a href="/#features">Features</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/#faq">FAQ</a>
+        <a class="btn primary" href="/#install">Add to Chrome</a>
+      </nav>
+    </header>
+
+    <article class="article">
+      <p class="kicker">How To</p>
+      <h1>How to stop deals from going stale</h1>
+
+      <p>
+        A stale deal is an open opportunity where nothing has happened — no emails, no calls, no movement —
+        for days or weeks. The prospect hasn't said no. They've just gone quiet. And quiet is where
+        most deals die.
+      </p>
+
+      <div class="callout">
+        <p><strong>The uncomfortable truth:</strong> Most lost deals aren't lost to competitors. They're lost to silence.
+          The prospect got busy, your email slid down their inbox, and nobody followed up. By the time you
+          notice, they've already hired someone else or solved the problem themselves.</p>
+      </div>
+
+      <p>Here's how to catch stale deals early and keep your pipeline alive.</p>
+
+      <h2>Step 1: Define what "stale" means for you</h2>
+      <p>
+        Not every deal goes stale on the same timeline. A quick-turn project proposal might go cold after
+        3 days of silence. An enterprise deal might be fine for 2 weeks between touchpoints.
+      </p>
+      <p>Set thresholds based on your typical sales cycle:</p>
+      <ul>
+        <li><strong>Fast sales (freelance, services, small contracts):</strong> 3–5 days with no reply = stale</li>
+        <li><strong>Medium sales (B2B, consulting, mid-market):</strong> 5–10 days = stale</li>
+        <li><strong>Slow sales (enterprise, high-value, long procurement):</strong> 10–14 days = worth a check-in</li>
+      </ul>
+
+      <h2>Step 2: Build a detection system</h2>
+      <p>
+        The problem with stale deals isn't knowing they exist — it's noticing them before it's too late.
+        You need a system that flags them automatically.
+      </p>
+
+      <div class="step-box">
+        <h3>Manual approach: Weekly pipeline audit</h3>
+        <p>
+          Block 30 minutes each Friday. Open your pipeline (spreadsheet, Notion, Trello — wherever you track deals).
+          For each active deal, check: when was the last contact? If it exceeds your threshold, it's stale.
+          Write the re-engagement email immediately, not "Monday."
+        </p>
+        <p><strong>Weakness:</strong> You'll skip this on busy weeks — which are exactly the weeks deals go stale.</p>
+      </div>
+
+      <div class="step-box">
+        <h3>Better approach: Automated stale detection</h3>
+        <p>
+          Use a tool that monitors your conversations and automatically flags deals that have gone silent.
+          The alert should appear in your daily workflow — not in a dashboard you have to remember to check.
+        </p>
+        <p><strong>Strength:</strong> Works even on your busiest days. No discipline required.</p>
+      </div>
+
+      <h2>Step 3: Re-engage before it's too late</h2>
+      <p>
+        When you catch a stale deal, you have three options. The right one depends on context:
+      </p>
+
+      <div class="step-box">
+        <h3>Option A: The gentle check-in</h3>
+        <p>
+          Use when the prospect was warm and the silence is likely just busyness. Keep it short,
+          reference the last conversation, and make it easy to reply.
+        </p>
+        <p><em>"Hi Sarah — wanted to check in on the roofing proposal from last week. Any questions I can answer, or would next Tuesday work for a quick call?"</em></p>
+      </div>
+
+      <div class="step-box">
+        <h3>Option B: Add new value</h3>
+        <p>
+          Use when the prospect may have lost interest. Don't just ping them — give them a reason to re-engage.
+          Share a relevant case study, a price update, or a new angle on their problem.
+        </p>
+        <p><em>"Hi Sarah — we just finished a similar project for a homeowner in your area. Thought you'd want to see the before/after. Still interested in getting started this month?"</em></p>
+      </div>
+
+      <div class="step-box">
+        <h3>Option C: The honest breakup</h3>
+        <p>
+          Use when you've followed up 3+ times with no response. A clean close often triggers a reply from
+          prospects who were "meaning to get back to you."
+        </p>
+        <p><em>"Hi Sarah — I haven't heard back, so I'll assume the timing isn't right. No hard feelings. If anything changes, I'm here. Closing this out on my end for now."</em></p>
+      </div>
+
+      <h2>Step 4: Use open data to decide your approach</h2>
+      <p>
+        If you have email open tracking, use it to pick the right re-engagement strategy:
+      </p>
+      <ul>
+        <li><strong>Opened multiple times, no reply:</strong> They're interested but hesitating. Option A or B.</li>
+        <li><strong>Opened once, never again:</strong> They saw it and moved on. Option B — give them a new reason.</li>
+        <li><strong>Never opened:</strong> Your email may be buried or in spam. Try a different subject line or channel.</li>
+        <li><strong>Opened after you send a follow-up:</strong> They needed the nudge. Keep following up on schedule.</li>
+      </ul>
+
+      <div class="callout-blue">
+        <p><strong>The pattern:</strong> The best way to stop stale deals is to never let them get stale in the first place.
+          When you set a follow-up on every sent email — and work from a daily queue instead of your memory —
+          silence doesn't have time to kill the deal.</p>
+      </div>
+
+      <h2>How NeverMiss prevents stale deals</h2>
+      <p>
+        NeverMiss has a Stale Deal Nudge feature built in. When a tracked conversation has no activity
+        for your configured threshold, it automatically surfaces in your Today queue with a nudge.
+        You see the deal stage, value, open history, and days since last contact — then choose to
+        re-engage, snooze, or close.
+      </p>
+      <p>
+        Combined with the follow-up queue (which prevents gaps in the first place) and open tracking
+        (which tells you who's engaged), stale deals get caught early — often before the prospect
+        has mentally moved on.
+      </p>
+
+      <div class="cta-box">
+        <p><strong>Try NeverMiss free for 30 days.</strong> No credit card. Stale deal nudges are on by default — so your pipeline stays alive even when you're heads-down on client work.</p>
+        <a class="btn primary" href="/#install">Add to Chrome</a>
+      </div>
+
+      <div class="related">
+        <p>Related</p>
+        <a href="/how-to/create-a-follow-up-system-in-gmail">How to create a follow-up system in Gmail</a>
+        <a href="/best/deal-management-tool-without-a-crm">Best deal management tool without a CRM</a>
+        <a href="/alternative/pipedrive">Pipedrive alternative</a>
+        <a href="/how-to/track-email-opens-in-gmail">How to track email opens in Gmail</a>
+      </div>
+    </article>
+
+    <footer class="footer">
+      <div class="footerRow">
+        <div>&copy; <span id="year"></span> NeverMiss</div>
+        <div class="footerLinks">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/">Home</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script>document.getElementById("year").textContent=String(new Date().getFullYear());</script>
+</body>
+</html>
